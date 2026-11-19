@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PARENTS-CLIENT — New era of Minecraft cheating.</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  }
+
+  html, body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 20% 20%, #2a0a4a 0%, #120024 40%, #05000d 100%);
+    position: relative;
+  }
+
+  /* Плавающие фиолетовые "пузыри" на фоне */
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.55;
+    animation: float 12s ease-in-out infinite;
+  }
+  .orb1 { width: 420px; height: 420px; background: #8b2ff5; top: -120px; left: -100px; }
+  .orb2 { width: 380px; height: 380px; background: #b14cff; bottom: -140px; right: -80px; animation-delay: -4s; }
+  .orb3 { width: 300px; height: 300px; background: #6a00ff; top: 50%; left: 60%; animation-delay: -8s; }
+
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%      { transform: translate(30px, -40px) scale(1.1); }
+  }
+
+  /* Стеклянная карточка */
+  .glass-card {
+    position: relative;
+    z-index: 10;
+    width: min(90vw, 520px);
+    padding: 48px 40px;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(22px) saturate(160%);
+    -webkit-backdrop-filter: blur(22px) saturate(160%);
+    box-shadow:
+      0 20px 60px rgba(120, 0, 255, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    text-align: center;
+    animation: cardIn 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(30px) scale(0.96); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  /* Блик на стекле */
+  .glass-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 28px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.25) 0%, transparent 40%);
+    pointer-events: none;
+  }
+
+  .logo {
+    font-size: 2.1rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    background: linear-gradient(90deg, #d8b4ff, #a855f7, #7c3aed);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 40px rgba(168, 85, 247, 0.5);
+    margin-bottom: 14px;
+  }
+
+  .description {
+    color: rgba(230, 215, 255, 0.85);
+    font-size: 1.05rem;
+    letter-spacing: 0.5px;
+    margin-bottom: 40px;
+  }
+
+  /* Кнопка */
+  .btn {
+    position: relative;
+    width: 100%;
+    padding: 18px 20px;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.75);
+    background: linear-gradient(135deg, rgba(139, 47, 245, 0.35), rgba(106, 0, 255, 0.25));
+    border: 1px solid rgba(180, 120, 255, 0.45);
+    border-radius: 16px;
+    cursor: not-allowed;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 30px rgba(120, 0, 255, 0.25), inset 0 1px 0 rgba(255,255,255,0.2);
+    transition: box-shadow 0.3s ease;
+    user-select: none;
+  }
+
+  .btn::after {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    animation: shimmer 3s infinite;
+  }
+
+  @keyframes shimmer {
+    0%   { left: -100%; }
+    60%  { left: 100%; }
+    100% { left: 100%; }
+  }
+
+  /* Вибрация */
+  .btn.shake {
+    animation: shake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+  }
+
+  @keyframes shake {
+    10%, 90% { transform: translateX(-2px); }
+    20%, 80% { transform: translateX(4px); }
+    30%, 50%, 70% { transform: translateX(-6px); }
+    40%, 60% { transform: translateX(6px); }
+  }
+
+  .footer {
+    margin-top: 34px;
+    font-size: 0.78rem;
+    color: rgba(200, 180, 255, 0.5);
+    letter-spacing: 1.5px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+
+  <main class="glass-card">
+    <h1 class="logo">PARENTS-CLIENT</h1>
+    <p class="description">New era of Minecraft cheating.</p>
+
+    <button class="btn" id="devBtn" type="button">В РАЗРАБОТКЕ... 19.11.2026</button>
+
+    <div class="footer">© PARENTS-CLIENT</div>
+  </main>
+
+  <script>
+    const btn = document.getElementById('devBtn');
+
+    btn.addEventListener('click', () => {
+      // Убираем класс, чтобы анимация перезапускалась
+      btn.classList.remove('shake');
+      void btn.offsetWidth; // рефлоу для перезапуска анимации
+      btn.classList.add('shake');
+    });
+  </script>
+
+</body>
+</html>
